@@ -1,0 +1,110 @@
+# Next.js 15 Project Architecture Rules
+
+You are an expert Full-Stack Next.js 15 developer. You MUST strictly adhere to the following architecture, import rules, and naming conventions for ALL code generation, refactoring, and file creation. Do not deviate from these rules under any circumstances.
+
+## Core Principles
+- **Server Components by default**: Use `'use client'` only when React hooks or browser APIs are needed.
+- **Thin Pages**: The `(web)` layer handles routing only. Business logic belongs in `modules` and `services`.
+- **Type Safety**: Use TypeScript strictly. No `any` types.
+- **Index Files**: Every slice/segment MUST export its public API via an `index.ts` (Barrel file).
+- **No Circular Dependencies**: Lower layers must NEVER import from upper layers.
+
+## 1. Architecture Layers & Import Rules
+The project uses a strict top-down layered architecture. A layer can ONLY import from layers below it.
+
+⬇️ **TOP TO BOTTOM DEPENDENCY FLOW:**
+1. `(web)` -> can import: modules, widgets, features, entities, shared, config, pkg
+2. `modules` -> can import: widgets, features, entities, shared, config, pkg
+3. `widgets` -> can import: features, entities, shared, config, pkg
+4. `features` -> can import: entities, shared, config, pkg
+5. `entities` -> can import: shared, config, pkg
+6. `shared` -> can import: config, pkg
+7. `config` -> can import: pkg
+8. `pkg` -> CANNOT import any app layers (external packages only)
+
+❌ **FORBIDDEN:**
+- `shared` importing from `entities`, `features`, `widgets`, `modules`, `(web)`
+- `entities` importing from `features`, `widgets`, `modules`, `(web)`
+- Any layer importing from a layer above it.
+
+## 2. Directory Structure & Layer Responsibilities
+
+```text
+src/
+├── app/
+│   ├── (web)/                  # Next.js Routing (pages, layouts, api routes)
+│   ├── modules/                # Core business logic, orchestrates widgets/features
+│   ├── widgets/                # Self-sufficient complex UI components
+│   ├── features/               # Simple reusable implementations (e.g., small UI, hooks)
+│   ├── entities/               # Business entities, data models, API/React Query integrations
+│   └── shared/                 # Common utilities, basic UI (shadcn), hooks, global stores
+├── config/                     # Env variables, fonts, global styles
+└── pkg/                        # External utilities, 3rd party clients
+__tests__/                      # Testing (unit, integration, e2e)
+
+3. Naming Conventions
+Directories
+Use kebab-case strictly (e.g., user-profile, order-history).
+
+Use singular for components/slices (e.g., button, card).
+
+Use plural for collections (e.g., users, orders).
+
+Files (Suffixes are REQUIRED)
+Pages: page.tsx
+
+Layouts: layout.tsx
+
+Modules: [name].module.tsx
+
+Components: [name].component.tsx
+
+Services: [name].service.ts
+
+Stores: [name].store.ts
+
+Hooks: [name].hook.tsx (or .hook.ts)
+
+Models: [name].model.ts
+
+APIs: [name].api.ts
+
+Queries (TanStack): [name].query.ts
+
+Mutations (TanStack): [name].mutation.ts
+
+Constants: [name].constant.ts
+
+Interfaces: [name].interface.ts
+
+4. Layer Specific Guidelines
+(web)
+Contains page.tsx, layout.tsx, loading.tsx, error.tsx, not-found.tsx.
+
+API routes live in api/**/*.ts.
+
+entities
+api/: Contains *.api.ts (fetch logic), *.query.ts (useQuery), *.mutation.ts (useMutation).
+
+models/: Contains *.model.ts (types/interfaces for business logic).
+
+shared
+ui/: Reusable basic UI components (like shadcn/ui components).
+
+store/: Global Zustand stores.
+
+hooks/: General-purpose hooks.
+
+assets/: Images, SVGs (*.svg).
+
+config
+env/: env.client.ts, env.server.ts.
+
+styles/: global.css.
+
+__tests__
+Follow this structure for tests outside src/:
+tests/
+├── unit/ (components/, services/, hooks/)
+├── integration/ (pages/, api/)
+└── e2e/ (flows/ - Playwright tests)
