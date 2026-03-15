@@ -1,5 +1,26 @@
 {
-    "Index": {
-      "title": "Hallo Welt! Das ist die deutsche Seite."
-    }
+  "Index": {
+    "title": "Hallo Welt! Das ist die deutsche Seite."
+  },
+  "auth": {
+    "loginTitle": "Willkommen zurück",
+    "registerTitle": "Konto erstellen",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "name@beispiel.de",
+    "passwordLabel": "Passwort",
+    "passwordPlaceholder": "••••••••",
+    "nameLabel": "Vollständiger Name",
+    "namePlaceholder": "Max Mustermann",
+    "confirmPasswordLabel": "Bestätigen",
+    "confirmPasswordPlaceholder": "••••••••",
+    "loading": "Bitte warten...",
+    "loginSubmit": "Anmelden",
+    "registerSubmit": "Konto erstellen",
+    "loginDescription": "Melden Sie sich an, um fortzufahren.",
+    "registerDescription": "Füllen Sie die Felder aus, um loszulegen.",
+    "noAccountYet": "Noch kein Konto?",
+    "alreadyHaveAccount": "Schon ein Konto?",
+    "toRegister": "Registrieren",
+    "toLogin": "Anmelden"
   }
+}

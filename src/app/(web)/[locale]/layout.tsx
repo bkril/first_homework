@@ -4,6 +4,8 @@ import { getMessages } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../../../config/styles/global.css";
 
+import { AuthProvider } from "@/app/modules/auth/auth-provider.module";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,7 +28,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params; 
+  const { locale } = await params;
   const messages = await getMessages();
 
   return (
@@ -35,7 +37,9 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </NextIntlClientProvider>
       </body>
     </html>

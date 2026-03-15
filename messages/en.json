@@ -1,5 +1,26 @@
 {
-    "Index": {
-      "title": "Hello World! This is the English page."
-    }
+  "Index": {
+    "title": "Hello World! This is the English page."
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "registerTitle": "Create an account",
+    "emailLabel": "Email",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "nameLabel": "Full name",
+    "namePlaceholder": "John Doe",
+    "confirmPasswordLabel": "Confirm",
+    "confirmPasswordPlaceholder": "••••••••",
+    "loading": "Please wait...",
+    "loginSubmit": "Sign in",
+    "registerSubmit": "Create account",
+    "loginDescription": "Sign in to your account to continue.",
+    "registerDescription": "Fill in the details below to get started.",
+    "noAccountYet": "No account yet?",
+    "alreadyHaveAccount": "Already have an account?",
+    "toRegister": "Sign up",
+    "toLogin": "Sign in"
   }
+}
