@@ -5,6 +5,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../../../config/styles/global.css";
 
 import { AuthProvider } from "@/app/modules/auth/auth-provider.module";
+import { QueryProvider } from "@/app/providers/query-provider";
+import { Header } from "@/app/widgets/header/ui/header.component";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,9 +39,14 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          <QueryProvider>
+            <AuthProvider>
+              <Header />
+              <main className="container mx-auto py-6">
+                {children}
+              </main>
+            </AuthProvider>
+          </QueryProvider>
         </NextIntlClientProvider>
       </body>
     </html>

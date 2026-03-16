@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
 import { z } from 'zod';
 
 import { loginSchema } from '@/app/shared/utils/validations';
@@ -156,15 +155,6 @@ export function LoginForm() {
           </Button>
         </Form>
 
-        <div className="mt-6 text-center text-sm text-zinc-500">
-          {t('noAccountYet')}{' '}
-          <Link
-            href="/register"
-            className="font-medium text-zinc-900 underline-offset-4 transition-colors duration-150 hover:text-zinc-600 hover:underline"
-          >
-            {t('toRegister')}
-          </Link>
-        </div>
       </CardContent>
     </Card>
   );

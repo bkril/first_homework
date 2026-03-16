@@ -2,6 +2,19 @@
   "Index": {
     "title": "Hallo Welt! Das ist die deutsche Seite."
   },
+  "teams": {
+    "heading": "Englische Premier League",
+    "subheading": "Alle Clubs der Premier League",
+    "founded": "Gegründet",
+    "backToList": "Zurück zur Liste"
+  },
+  "teamDetail": {
+    "founded": "Gegründet",
+    "stadium": "Stadion",
+    "capacity": "Kapazität",
+    "website": "Offizielle Website",
+    "noDescription": "Keine Beschreibung verfügbar."
+  },
   "auth": {
     "loginTitle": "Willkommen zurück",
     "registerTitle": "Konto erstellen",

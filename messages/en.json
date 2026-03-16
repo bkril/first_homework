@@ -2,6 +2,19 @@
   "Index": {
     "title": "Hello World! This is the English page."
   },
+  "teams": {
+    "heading": "English Premier League",
+    "subheading": "All clubs competing in the Premier League",
+    "founded": "Founded",
+    "backToList": "Back to list"
+  },
+  "teamDetail": {
+    "founded": "Founded",
+    "stadium": "Stadium",
+    "capacity": "Capacity",
+    "website": "Official Website",
+    "noDescription": "No description available."
+  },
   "auth": {
     "loginTitle": "Welcome back",
     "registerTitle": "Create an account",

@@ -16,7 +16,7 @@ function getLocaleFromPathname(pathname: string): string {
     : routing.defaultLocale;
 }
 
-const AUTH_ROUTES = ['/login', '/register'];
+const AUTH_ROUTES = ['/auth', '/login', '/register'];
 
 function isAuthRoute(pathname: string): boolean {
   return AUTH_ROUTES.some((route) => pathname.includes(route));
@@ -60,7 +60,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const onAuthPage = isAuthRoute(pathname);
 
     if (!user && !onAuthPage) {
-      router.push(`/${locale}/login`);
+      router.push(`/${locale}/auth`);
       return;
     }
 
