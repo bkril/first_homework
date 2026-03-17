@@ -29,8 +29,7 @@ export async function fetchTeams(): Promise<Team[]> {
   return data.teams ?? [];
 }
 
-// Uses the same reliable list endpoint and filters by id locally,
-// avoiding the unreliable lookupteam.php on the free API key.
+
 export async function fetchTeamById(id: string): Promise<Team | null> {
   const teams = await fetchTeams();
   return teams.find((t) => String(t.idTeam) === String(id)) ?? null;

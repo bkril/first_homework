@@ -7,7 +7,6 @@ import { supabase } from '@/pkg/supabase';
 import { useAuthStore } from '@/app/shared/store/auth.store';
 import { routing } from '@/i18n/routing';
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function getLocaleFromPathname(pathname: string): string {
   const segment = pathname.split('/')[1];
@@ -22,7 +21,6 @@ function isAuthRoute(pathname: string): boolean {
   return AUTH_ROUTES.some((route) => pathname.includes(route));
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
 
 interface AuthProviderProps {
   children: React.ReactNode;
