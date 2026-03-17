@@ -120,7 +120,7 @@ npx playwright show-report
 ## Deploy
 
 [httpsfirst-homework-five.vercel.app
-](https://first-homework-five.vercel.app/en)---
+](https://first-homework-five.vercel.app/en)
 
 ## Screenshots
 
