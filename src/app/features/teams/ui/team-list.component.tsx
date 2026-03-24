@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { fetchTeams } from '@/app/shared/api/teams.api';
+import { fetchTeams } from '@/app/entities/teams';
 import {
   Card,
   CardContent,

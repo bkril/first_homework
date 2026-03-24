@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
 import { supabase } from '@/pkg/supabase';
-import { useAuthStore } from '@/app/shared/store/auth.store';
-import { routing } from '@/i18n/routing';
+import { useAuthStore } from '@/app/entities/auth';
+import { routing } from '@/config/i18n/routing';
 
 
 function getLocaleFromPathname(pathname: string): string {

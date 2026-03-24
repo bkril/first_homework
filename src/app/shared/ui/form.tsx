@@ -7,7 +7,7 @@ import {
   type UseFormReturn,
 } from "react-hook-form";
 
-import { cn } from "@/app/shared/utils/cn.utils";
+import { cn } from "@/app/shared/utils/cn.service";
 
 // ─── Form ────────────────────────────────────────────────────────────────────
 

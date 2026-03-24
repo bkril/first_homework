@@ -3,7 +3,7 @@
 import { LogOut, User } from 'lucide-react';
 import Link from 'next/link';
 
-import { useAuthStore } from '@/app/shared/store/auth.store';
+import { useAuthStore } from '@/app/entities/auth';
 import { Avatar, AvatarFallback } from '@/app/shared/ui/avatar';
 import { Button } from '@/app/shared/ui/button';
 import {
@@ -14,7 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/app/shared/ui/dropdown-menu';
-import { LanguageSwitcher } from '@/app/features/language/ui/language-switcher';
+import { LanguageSwitcher } from '@/app/features/language/ui';
 
 
 function getInitials(email: string, name?: string): string {

@@ -1,18 +1,18 @@
-import type { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
+import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin('./src/config/i18n/request.ts');
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "www.thesportsdb.com",
+        protocol: 'https',
+        hostname: 'www.thesportsdb.com',
       },
       {
-        protocol: "https",
-        hostname: "r2.thesportsdb.com",
+        protocol: 'https',
+        hostname: 'r2.thesportsdb.com',
       },
     ],
   },

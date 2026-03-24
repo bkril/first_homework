@@ -3,7 +3,7 @@
 import { Avatar as AvatarPrimitive } from 'radix-ui';
 import * as React from 'react';
 
-import { cn } from '@/app/shared/utils/cn.utils';
+import { cn } from '@/app/shared/utils/cn.service';
 
 
 const Avatar = React.forwardRef<

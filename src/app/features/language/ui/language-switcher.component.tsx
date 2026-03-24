@@ -3,7 +3,7 @@
 import { Globe } from 'lucide-react';
 import { useLocale } from 'next-intl';
 
-import { usePathname, useRouter } from '@/i18n/navigation';
+import { usePathname, useRouter } from '@/config/i18n/navigation';
 import { Button } from '@/app/shared/ui/button';
 import {
   DropdownMenu,

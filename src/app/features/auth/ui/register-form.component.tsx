@@ -6,8 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { z } from 'zod';
 
-import { registerSchema } from '@/app/shared/utils/validations';
-import { useAuthStore } from '@/app/shared/store/auth.store';
+import { registerSchema, useAuthStore } from '@/app/entities/auth';
 import {
   Form,
   FormControl,

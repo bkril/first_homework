@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "@/app/shared/utils/cn.utils"
+import { cn } from "@/app/shared/utils/cn.service"
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (

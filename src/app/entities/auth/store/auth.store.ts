@@ -4,8 +4,6 @@ import type { User } from '@supabase/supabase-js';
 
 import { supabase } from '@/pkg/supabase';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface AuthState {
   user: User | null;
   isLoading: boolean;
@@ -18,8 +16,6 @@ interface AuthState {
   clearError: () => void;
 }
 
-// ─── Store ────────────────────────────────────────────────────────────────────
-
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
@@ -31,7 +27,6 @@ export const useAuthStore = create<AuthState>()(
         set({ user });
       },
 
-      // ── login ──────────────────────────────────────────────────────────────
       async login(email, password) {
         set({ isLoading: true, error: null });
 
@@ -48,7 +43,6 @@ export const useAuthStore = create<AuthState>()(
         set({ user: data.user, isLoading: false });
       },
 
-      // ── register ───────────────────────────────────────────────────────────
       async register(email, password, name) {
         set({ isLoading: true, error: null });
 
@@ -68,14 +62,12 @@ export const useAuthStore = create<AuthState>()(
         set({ user: data.user, isLoading: false });
       },
 
-      // ── logout ─────────────────────────────────────────────────────────────
       async logout() {
         set({ isLoading: true, error: null });
         await supabase.auth.signOut();
         set({ user: null, isLoading: false });
       },
 
-      // ── clearError ─────────────────────────────────────────────────────────
       clearError() {
         set({ error: null });
       },

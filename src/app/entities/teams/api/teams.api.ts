@@ -1,14 +1,4 @@
-export interface Team {
-  idTeam: string;
-  strTeam: string;
-  strBadge: string | null;
-  intFormedYear: string | null;
-  strStadium: string | null;
-  intStadiumCapacity: string | null;
-  strDescriptionEN: string | null;
-  strWebsite: string | null;
-  strTeamJersey: string | null;
-}
+import type { Team } from '../models/team.model';
 
 interface TeamsApiResponse {
   teams: Team[] | null;
@@ -28,7 +18,6 @@ export async function fetchTeams(): Promise<Team[]> {
 
   return data.teams ?? [];
 }
-
 
 export async function fetchTeamById(id: string): Promise<Team | null> {
   const teams = await fetchTeams();
