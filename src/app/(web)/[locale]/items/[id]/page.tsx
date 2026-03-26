@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
-import { fetchTeamById } from '@/app/entities/teams';
-import { TeamDetailModule } from '@/app/modules/teams';
+import { fetchTeamById } from '@/app/entities/api';
+import { TeamDetailModule } from '@/app/modules/team-detail';
 
 type Params = Promise<{ locale: string; id: string }>;
 

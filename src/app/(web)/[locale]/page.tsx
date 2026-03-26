@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
-import { TeamsListModule } from '@/app/modules/teams';
+import { TeamsListModule } from '@/app/modules/teams-list';
 
 export const revalidate = 3600;
 

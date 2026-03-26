@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 
-import { RegisterForm } from "@/app/features/auth/ui";
+import { RegisterForm } from "@/app/features/auth";
 
 export default async function RegisterPage({
   params,

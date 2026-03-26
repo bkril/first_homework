@@ -1,1 +1,1 @@
-export { AuthProvider } from './auth-provider.module';
+export { AuthProvider } from './auth.module';

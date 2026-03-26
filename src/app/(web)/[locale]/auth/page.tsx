@@ -1,7 +1,7 @@
 import { setRequestLocale } from 'next-intl/server';
 
-import { LoginForm } from '@/app/features/auth/ui';
-import { RegisterForm } from '@/app/features/auth/ui';
+import { LoginForm } from '@/app/features/auth';
+import { RegisterForm } from '@/app/features/auth';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/app/shared/ui/tabs';
 
 export default async function AuthPage({
