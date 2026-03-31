@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 
-// ─── Auth helper ─────────────────────────────────────────────────────────────
+
 
 async function login(page: Page) {
   await page.goto('/en/auth');
@@ -28,7 +28,7 @@ async function login(page: Page) {
   await page.waitForURL(/\/en$/);
 }
 
-// ─── Authenticated flows ──────────────────────────────────────────────────────
+
 
 test.describe('Authenticated flows', () => {
   test.beforeEach(async ({ page }) => {
@@ -55,7 +55,7 @@ test.describe('Authenticated flows', () => {
   });
 });
 
-// ─── Unauthenticated flows ───────────────────────────────────────────────────
+
 
 test.describe('Unauthenticated flows', () => {
   test('should redirect unauthenticated user from protected list to login page', async ({ page }) => {

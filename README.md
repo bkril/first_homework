@@ -119,17 +119,10 @@ npx playwright show-report
 
 ## Deploy
 
-[httpsfirst-homework-five.vercel.app
-](https://first-homework-five.vercel.app/en)
+> Link will be added later.
+
+---
 
 ## Screenshots
 
-<img width="1331" height="796" alt="Знімок екрана 2026-03-17 о 02 22 09" src="https://github.com/user-attachments/assets/e7e340a8-1e25-46d4-a097-6d90a6c0d601" />
-
-Main page(List teams)
-<img width="1335" height="799" alt="Знімок екрана 2026-03-17 о 02 22 42" src="https://github.com/user-attachments/assets/97a0c6a3-8f0d-4a67-ae71-74cf7e2125d5" />
-
-[items] page
-<img width="1390" height="808" alt="Знімок екрана 2026-03-17 о 02 23 40" src="https://github.com/user-attachments/assets/850c67fd-a9e0-4cb2-aafe-233990a196a1" />
-
-
+> *(can be added later)*
