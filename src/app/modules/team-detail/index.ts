@@ -1,1 +1,1 @@
-export { TeamDetailModule } from './team-detail.module';
+export { TeamDetailModuleComponent } from './team-detail.module'

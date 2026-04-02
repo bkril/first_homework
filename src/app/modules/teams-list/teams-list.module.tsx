@@ -1,25 +1,28 @@
-'use server';
+'use server'
 
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 
-import { getQueryClient } from '@/app/shared/ui/query-provider';
-import { fetchTeams } from '@/app/entities/api';
-import { TeamList } from '@/app/features/teams';
+import { fetchTeams } from '@/app/entities/api'
+import { TeamListComponent } from '@/app/features/teams'
+import { getQueryClient } from '@/app/shared/ui/query-provider'
 
-interface TeamsListModuleProps {
-  foundedLabel: string;
+interface ITeamsListModuleProps {
+  foundedLabel: string
 }
 
-export async function TeamsListModule({ foundedLabel }: TeamsListModuleProps) {
-  const queryClient = getQueryClient();
+async function TeamsListModuleComponent({ foundedLabel }: ITeamsListModuleProps) {
+  const queryClient = getQueryClient()
   await queryClient.prefetchQuery({
     queryKey: ['teams'],
     queryFn: fetchTeams,
-  });
+  })
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <TeamList foundedLabel={foundedLabel} />
+      <TeamListComponent foundedLabel={foundedLabel} />
     </HydrationBoundary>
-  );
+  )
 }
+
+export { TeamsListModuleComponent }
+export default TeamsListModuleComponent

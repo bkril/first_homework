@@ -1,1 +1,1 @@
-export { Label } from './label.component';
+export { Label } from './label.component'

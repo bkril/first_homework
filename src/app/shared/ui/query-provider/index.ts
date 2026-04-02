@@ -1,2 +1,2 @@
-export { QueryProvider } from './query-provider.component';
-export { getQueryClient } from './query-client.service';
+export { getQueryClient } from './query-client.service'
+export { QueryProviderComponent } from './query-provider.component'

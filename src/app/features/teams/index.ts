@@ -1,1 +1,1 @@
-export { TeamList } from './team-list.component';
+export { TeamListComponent } from './team-list.component'

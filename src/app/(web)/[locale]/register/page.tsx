@@ -1,6 +1,11 @@
 import { setRequestLocale } from 'next-intl/server'
 
-import { RegisterForm } from '@/app/features/auth'
+import { routing } from '@/config/i18n/routing'
+import { RegisterFormComponent } from '@/app/features/auth'
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
 
 export default async function RegisterPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -19,7 +24,7 @@ export default async function RegisterPage({ params }: { params: Promise<{ local
       <div className='pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,transparent,#f4f4f5_70%)]' />
 
       <div className='relative w-full max-w-[420px]'>
-        <RegisterForm />
+        <RegisterFormComponent />
       </div>
     </main>
   )

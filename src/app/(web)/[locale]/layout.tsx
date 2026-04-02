@@ -1,12 +1,18 @@
 import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
-import { Geist, Geist_Mono } from 'next/font/google'
+
+import { routing } from '@/config/i18n/routing'
+import { AuthProviderComponent } from '@/app/modules/auth'
+import { QueryProviderComponent } from '@/app/shared/ui/query-provider'
+import { HeaderComponent } from '@/app/widgets/header'
+
 import '../../../config/styles/global.css'
 
-import { AuthProvider } from '@/app/modules/auth'
-import { QueryProvider } from '@/app/shared/ui/query-provider'
-import { Header } from '@/app/widgets/header'
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,12 +43,12 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <QueryProvider>
-            <AuthProvider>
-              <Header />
+          <QueryProviderComponent>
+            <AuthProviderComponent>
+              <HeaderComponent />
               <main className='container mx-auto py-6'>{children}</main>
-            </AuthProvider>
-          </QueryProvider>
+            </AuthProviderComponent>
+          </QueryProviderComponent>
         </NextIntlClientProvider>
       </body>
     </html>

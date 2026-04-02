@@ -1,1 +1,1 @@
-export { TeamsListModule } from './teams-list.module';
+export { TeamsListModuleComponent } from './teams-list.module'

@@ -1,82 +1,73 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react'
 
-import { supabase } from '@/pkg/supabase';
-import { useAuthStore } from '@/app/shared/store';
-import { routing } from '@/config/i18n/routing';
+import { useAuthStore } from '@/app/shared/store'
+import { usePathname, useRouter } from '@/config/i18n/navigation'
+import { supabase } from '@/pkg/supabase'
 
-
-function getLocaleFromPathname(pathname: string): string {
-  const segment = pathname.split('/')[1];
-  return (routing.locales as readonly string[]).includes(segment)
-    ? segment
-    : routing.defaultLocale;
-}
-
-const AUTH_ROUTES = ['/auth', '/login', '/register'];
+const AUTH_ROUTES = ['/auth', '/login', '/register']
 
 function isAuthRoute(pathname: string): boolean {
-  return AUTH_ROUTES.some((route) => pathname.includes(route));
+  return AUTH_ROUTES.some((route) => pathname.includes(route))
 }
 
-
-interface AuthProviderProps {
-  children: React.ReactNode;
+interface IAuthProviderProps {
+  children: React.ReactNode
 }
 
-export function AuthProvider({ children }: AuthProviderProps) {
-  const router = useRouter();
-  const pathname = usePathname();
+function AuthProviderComponent({ children }: IAuthProviderProps) {
+  const router = useRouter()
+  const pathname = usePathname()
 
-  const setUser = useAuthStore((state) => state.setUser);
-  const user = useAuthStore((state) => state.user);
+  const setUser = useAuthStore((state) => state.setUser)
+  const user = useAuthStore((state) => state.user)
 
-  const [isAuthChecking, setIsAuthChecking] = useState(true);
+  const [isAuthChecking, setIsAuthChecking] = useState(true)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      setIsAuthChecking(false);
-    });
+      setUser(session?.user ?? null)
+      setIsAuthChecking(false)
+    })
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null);
-      },
-    );
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
 
-    return () => subscription.unsubscribe();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return () => subscription.unsubscribe()
+  }, [])
 
   useEffect(() => {
-    if (isAuthChecking) return;
+    if (isAuthChecking) return
 
-    const locale = getLocaleFromPathname(pathname);
-    const onAuthPage = isAuthRoute(pathname);
+    const onAuthPage = isAuthRoute(pathname)
 
     if (!user && !onAuthPage) {
-      router.push(`/${locale}/auth`);
-      return;
+      router.push('/auth')
+      return
     }
 
     if (user && onAuthPage) {
-      router.push(`/${locale}`);
+      router.push('/')
     }
-  }, [user, pathname, isAuthChecking, router]);
+  }, [user, pathname, isAuthChecking, router])
 
   if (isAuthChecking) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-50">
-        <div className="flex flex-col items-center gap-3">
-          <div className="h-7 w-7 animate-spin rounded-full border-2 border-zinc-200 border-t-zinc-900" />
-          <span className="text-xs text-zinc-400">Loading...</span>
+      <div className='flex min-h-screen items-center justify-center bg-zinc-50'>
+        <div className='flex flex-col items-center gap-3'>
+          <div className='h-7 w-7 animate-spin rounded-full border-2 border-zinc-200 border-t-zinc-900' />
+          <span className='text-xs text-zinc-400'>Loading...</span>
         </div>
       </div>
-    );
+    )
   }
 
-  return <>{children}</>;
+  return <>{children}</>
 }
+
+export { AuthProviderComponent }
+export default AuthProviderComponent

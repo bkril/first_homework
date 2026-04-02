@@ -15,6 +15,12 @@
     "website": "Official Website",
     "noDescription": "No description available."
   },
+  "notFound": {
+    "code": "404",
+    "title": "Page not found",
+    "description": "Sorry, the page you are looking for doesn't exist or has been moved.",
+    "backHome": "Back to home"
+  },
   "auth": {
     "loginTitle": "Welcome back",
     "registerTitle": "Create an account",

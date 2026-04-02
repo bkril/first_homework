@@ -1,22 +1,23 @@
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
-import type { User } from '@supabase/supabase-js';
+import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
 
-import { supabase } from '@/pkg/supabase';
+import type { User } from '@supabase/supabase-js'
 
-interface AuthState {
-  user: User | null;
-  isLoading: boolean;
-  error: string | null;
+import { supabase } from '@/pkg/supabase'
 
-  setUser: (user: User | null) => void;
-  login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string, name: string) => Promise<void>;
-  logout: () => Promise<void>;
-  clearError: () => void;
+interface IAuthState {
+  user: User | null
+  isLoading: boolean
+  error: string | null
+
+  setUser: (user: User | null) => void
+  login: (email: string, password: string) => Promise<void>
+  register: (email: string, password: string, name: string) => Promise<void>
+  logout: () => Promise<void>
+  clearError: () => void
 }
 
-export const useAuthStore = create<AuthState>()(
+export const useAuthStore = create<IAuthState>()(
   persist(
     (set) => ({
       user: null,
@@ -24,27 +25,27 @@ export const useAuthStore = create<AuthState>()(
       error: null,
 
       setUser(user) {
-        set({ user });
+        set({ user })
       },
 
       async login(email, password) {
-        set({ isLoading: true, error: null });
+        set({ isLoading: true, error: null })
 
         const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,
-        });
+        })
 
         if (error) {
-          set({ error: error.message, isLoading: false });
-          return;
+          set({ error: error.message, isLoading: false })
+          return
         }
 
-        set({ user: data.user, isLoading: false });
+        set({ user: data.user, isLoading: false })
       },
 
       async register(email, password, name) {
-        set({ isLoading: true, error: null });
+        set({ isLoading: true, error: null })
 
         const { data, error } = await supabase.auth.signUp({
           email,
@@ -52,24 +53,24 @@ export const useAuthStore = create<AuthState>()(
           options: {
             data: { full_name: name },
           },
-        });
+        })
 
         if (error) {
-          set({ error: error.message, isLoading: false });
-          return;
+          set({ error: error.message, isLoading: false })
+          return
         }
 
-        set({ user: data.user, isLoading: false });
+        set({ user: data.user, isLoading: false })
       },
 
       async logout() {
-        set({ isLoading: true, error: null });
-        await supabase.auth.signOut();
-        set({ user: null, isLoading: false });
+        set({ isLoading: true, error: null })
+        await supabase.auth.signOut()
+        set({ user: null, isLoading: false })
       },
 
       clearError() {
-        set({ error: null });
+        set({ error: null })
       },
     }),
 
@@ -87,4 +88,4 @@ export const useAuthStore = create<AuthState>()(
       partialize: (state) => ({ user: state.user }),
     },
   ),
-);
+)

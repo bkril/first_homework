@@ -1,9 +1,1 @@
-export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardAction,
-  CardDescription,
-  CardContent,
-} from './card.component';
+export { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './card.component'

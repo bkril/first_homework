@@ -1,86 +1,82 @@
-'use client';
+'use client'
 
-import { useQuery } from '@tanstack/react-query';
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
 
-import { fetchTeams } from '@/app/entities/api';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/app/shared/ui/card';
+import { useQuery } from '@tanstack/react-query'
 
-interface TeamListProps {
-  foundedLabel?: string;
+import { fetchTeams } from '@/app/entities/api'
+import { Card, CardContent, CardHeader, CardTitle } from '@/app/shared/ui/card'
+import { Link } from '@/config/i18n/navigation'
+
+interface ITeamListProps {
+  foundedLabel?: string
 }
 
-export function TeamList({ foundedLabel = 'Founded' }: TeamListProps) {
-  const { data: teams = [], isPending, isError } = useQuery({
+function TeamListComponent({ foundedLabel = 'Founded' }: ITeamListProps) {
+  const {
+    data: teams = [],
+    isPending,
+    isError,
+  } = useQuery({
     queryKey: ['teams'],
     queryFn: fetchTeams,
-  });
+  })
   if (isPending) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
         {Array.from({ length: 8 }).map((_, i) => (
-          <Card key={i} className="animate-pulse">
+          <Card key={i} className='animate-pulse'>
             <CardHeader>
-              <div className="mx-auto h-[100px] w-[100px] rounded-lg bg-muted" />
+              <div className='bg-muted mx-auto h-[100px] w-[100px] rounded-lg' />
             </CardHeader>
             <CardContent>
-              <div className="h-5 w-3/4 rounded bg-muted mb-2" />
-              <div className="h-4 w-1/2 rounded bg-muted" />
+              <div className='bg-muted mb-2 h-5 w-3/4 rounded' />
+              <div className='bg-muted h-4 w-1/2 rounded' />
             </CardContent>
           </Card>
         ))}
       </div>
-    );
+    )
   }
 
   if (isError) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 gap-4">
-        <p className="text-destructive text-lg font-medium">
-          Failed to load teams. Please try again later.
-        </p>
+      <div className='flex flex-col items-center justify-center gap-4 py-20'>
+        <p className='text-destructive text-lg font-medium'>Failed to load teams. Please try again later.</p>
       </div>
-    );
+    )
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
       {teams.map((team) => (
         <Link
           key={team.idTeam}
           href={'/items/' + team.idTeam}
-          className="group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-xl"
+          className='group focus-visible:ring-ring rounded-xl focus-visible:ring-2 focus-visible:outline-none'
         >
-          <Card className="h-full transition-all duration-200 hover:shadow-lg hover:scale-[1.02] hover:ring-primary/40 group-focus-visible:ring-primary/40 cursor-pointer">
-            <CardHeader className="items-center">
-              <div className="relative flex items-center justify-center w-[100px] h-[100px] mx-auto">
+          <Card className='hover:ring-primary/40 group-focus-visible:ring-primary/40 h-full cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg'>
+            <CardHeader className='items-center'>
+              <div className='relative mx-auto flex h-[100px] w-[100px] items-center justify-center'>
                 {team.strBadge ? (
                   <Image
                     src={team.strBadge}
                     width={100}
                     height={100}
                     alt={team.strTeam}
-                    className="object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-110"
+                    className='object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-110'
                   />
                 ) : (
-                  <div className="w-[100px] h-[100px] rounded-lg bg-muted flex items-center justify-center text-muted-foreground text-xs">
+                  <div className='bg-muted text-muted-foreground flex h-[100px] w-[100px] items-center justify-center rounded-lg text-xs'>
                     No badge
                   </div>
                 )}
               </div>
             </CardHeader>
-            <CardContent className="flex flex-col gap-1 text-center">
-              <CardTitle className="text-sm font-semibold leading-tight">
-                {team.strTeam}
-              </CardTitle>
+            <CardContent className='flex flex-col gap-1 text-center'>
+              <CardTitle className='text-sm leading-tight font-semibold'>{team.strTeam}</CardTitle>
               {team.intFormedYear && (
-                <p className="text-xs text-muted-foreground">
+                <p className='text-muted-foreground text-xs'>
                   {foundedLabel} {team.intFormedYear}
                 </p>
               )}
@@ -89,5 +85,8 @@ export function TeamList({ foundedLabel = 'Founded' }: TeamListProps) {
         </Link>
       ))}
     </div>
-  );
+  )
 }
+
+export { TeamListComponent }
+export default TeamListComponent

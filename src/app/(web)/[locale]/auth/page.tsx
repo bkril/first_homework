@@ -1,8 +1,13 @@
 import { setRequestLocale } from 'next-intl/server'
 
-import { LoginForm } from '@/app/features/auth'
-import { RegisterForm } from '@/app/features/auth'
+import { LoginFormComponent } from '@/app/features/auth'
+import { RegisterFormComponent } from '@/app/features/auth'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/app/shared/ui/tabs'
+import { routing } from '@/config/i18n/routing'
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
 
 export default async function AuthPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -38,11 +43,11 @@ export default async function AuthPage({ params }: { params: Promise<{ locale: s
           </TabsList>
 
           <TabsContent value='login' className='mt-0'>
-            <LoginForm />
+            <LoginFormComponent />
           </TabsContent>
 
           <TabsContent value='register' className='mt-0'>
-            <RegisterForm />
+            <RegisterFormComponent />
           </TabsContent>
         </Tabs>
       </div>

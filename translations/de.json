@@ -15,6 +15,12 @@
     "website": "Offizielle Website",
     "noDescription": "Keine Beschreibung verfügbar."
   },
+  "notFound": {
+    "code": "404",
+    "title": "Seite nicht gefunden",
+    "description": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "backHome": "Zurück zur Startseite"
+  },
   "auth": {
     "loginTitle": "Willkommen zurück",
     "registerTitle": "Konto erstellen",

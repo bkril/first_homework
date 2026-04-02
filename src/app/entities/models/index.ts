@@ -1,2 +1,2 @@
-export type { Team } from './team.model';
-export { loginSchema, registerSchema } from './auth.model';
+export { loginSchema, registerSchema } from './auth.model'
+export type { ITeam } from './team.model'

@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 
+export const dynamic = 'force-dynamic'
+
 import { fetchTeamById } from '@/app/entities/api'
-import { TeamDetailModule } from '@/app/modules/team-detail'
+import { TeamDetailModuleComponent } from '@/app/modules/team-detail'
 
 type Params = Promise<{ locale: string; id: string }>
 
@@ -26,5 +28,5 @@ export default async function TeamPage({ params }: { params: Params }) {
   const { locale, id } = await params
   setRequestLocale(locale)
 
-  return <TeamDetailModule id={id} locale={locale} />
+  return <TeamDetailModuleComponent id={id} locale={locale} />
 }

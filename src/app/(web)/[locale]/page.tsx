@@ -1,8 +1,13 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
-import { TeamsListModule } from '@/app/modules/teams-list'
+import { TeamsListModuleComponent } from '@/app/modules/teams-list'
+import { routing } from '@/config/i18n/routing'
 
 export const revalidate = 3600
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -18,7 +23,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <p className='text-muted-foreground text-lg'>{t('subheading')}</p>
         </div>
 
-        <TeamsListModule foundedLabel={t('founded')} />
+        <TeamsListModuleComponent foundedLabel={t('founded')} />
       </div>
     </main>
   )

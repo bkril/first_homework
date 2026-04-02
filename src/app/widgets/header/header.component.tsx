@@ -1,8 +1,8 @@
 'use client'
 
 import { LogOut, User } from 'lucide-react'
-import Link from 'next/link'
 
+import { LanguageSwitcherComponent } from '@/app/features/language'
 import { useAuthStore } from '@/app/shared/store'
 import { Avatar, AvatarFallback } from '@/app/shared/ui/avatar'
 import { Button } from '@/app/shared/ui/button'
@@ -14,7 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/app/shared/ui/dropdown-menu'
-import { LanguageSwitcher } from '@/app/features/language'
+import { Link } from '@/config/i18n/navigation'
 
 function getInitials(email: string, name?: string): string {
   if (name) {
@@ -28,7 +28,7 @@ function getInitials(email: string, name?: string): string {
   return email.slice(0, 2).toUpperCase()
 }
 
-export function Header() {
+function HeaderComponent() {
   const { user, logout } = useAuthStore()
 
   const displayName = user?.user_metadata?.full_name ?? user?.email ?? ''
@@ -42,7 +42,7 @@ export function Header() {
         </Link>
 
         <div className='flex items-center gap-4'>
-          <LanguageSwitcher />
+          <LanguageSwitcherComponent />
 
           {user ? (
             <DropdownMenu>
@@ -85,3 +85,6 @@ export function Header() {
     </header>
   )
 }
+
+export { HeaderComponent }
+export default HeaderComponent
